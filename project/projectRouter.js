@@ -87,12 +87,23 @@ router.post('/resources', (req, res) => {
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 router.get('/projects/:id/tasks', async (req, res, next) => {
     try {
-        const tasks = await data.getProjectTasks(req.params.id)
-        res.json(tasks)
+        const project_tasks = await data.getProjectTasks(req.params.id)
+        res.json(project_tasks)
     } catch (err) {
         next(err)
     }
 })
 
+//-----------------------------------------------------------------------------
+// GETS ALL RESOURCES FOR PROJECT ID
+//-----------------------------------------------------------------------------
+router.get('/pr/:id', async (req, res, next) => {
+    try {
+        const project_resources = await data.getPR(req.params.id)
+        res.json(project_resources)
+    }catch (err) {
+        next(err)
+    }
+})
 
 module.exports = router;
